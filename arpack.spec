@@ -20,7 +20,7 @@ URL:		http://www.caam.rice.edu/software/ARPACK/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gcc-g77
-#BuildRequires:	lapack-devel
+BuildRequires:	blas-devel
 BuildRequires:	libtool	>= 1:1.4.2-9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
