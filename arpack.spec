@@ -21,8 +21,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gcc-g77
 BuildRequires:	blas-devel
-BuildRequires:	libtool	>= 1:1.4.2-9
-BuildRequires:	which
+BuildRequires:	libtool	>= 2:1.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -50,7 +49,7 @@ dodatkowa pamiêæ (np. dyskowa) nie jest wymagana.
 Summary:	ARPACK development files
 Summary(pl):	Pliki programistyczne ARPACK
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	blas-devel
 
 %description devel
@@ -63,7 +62,7 @@ Pliki programistyczne ARPACK.
 Summary:	Static ARPACK library
 Summary(pl):	Statyczna biblioteka ARPACK
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static ARPACK library.
@@ -86,12 +85,7 @@ cp %{SOURCE4} .
 %{__automake}
 %configure
 
-# libtool 1.4d requires --tag for g77, libtool 1.4.2 fails when --tag is passed
-LTTAG=""
-grep -q -e '--tag' `which libtool` && LTTAG="--tag=F77"
-
-%{__make} \
-	LTTAG="$LTTAG"
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
