@@ -23,7 +23,7 @@ diff -urN ARPACK.orig/SRC/Makefile.am ARPACK.patch/SRC/Makefile.am
 --- ARPACK.orig/SRC/Makefile.am	1970-01-01 01:00:00.000000000 +0100
 +++ ARPACK.patch/SRC/Makefile.am	2004-12-16 12:08:47.655500904 +0100
 @@ -0,0 +1,74 @@
-+LIBTOOL = $(SHELL) $(top_builddir)/libtool $(LTTAG)
++LIBTOOL = $(SHELL) $(top_builddir)/libtool --tag=F77
 +lib_LTLIBRARIES = libarpack.la
 +libarpack_la_LDFLAGS = -version-info $(subst .,:,@VERSION@)
 +libarpack_la_LIBADD =$(LDFLAGS)
