@@ -1,8 +1,11 @@
+#
+# Conditional build:
+%bcond_with	acml	# With ACML version of BLAS instead of NETLIB implementation
 Summary:	Subroutines for solving large scale eigenvalue problems
 Summary(pl):	Rozwi±zywanie zagadnienia w³asnego dla du¿ych macierzy
 Name:		arpack
 Version:	2.1
-Release:	3
+Release:	3%{?with_acml:ACML}
 License:	Freely distributable
 Group:		Libraries
 Source0:	http://www.caam.rice.edu/software/ARPACK/SRC/%{name}96.tar.gz
@@ -20,8 +23,9 @@ URL:		http://www.caam.rice.edu/software/ARPACK/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gcc-g77
-BuildRequires:	blas-devel
+%{!?with_acml:BuildRequires:	blas-devel}
 BuildRequires:	libtool	>= 2:1.5
+%{?with_acml:ExclusiveArch:	amd64}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -50,7 +54,7 @@ Summary:	ARPACK development files
 Summary(pl):	Pliki programistyczne ARPACK
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	blas-devel
+%{!?with_acml:Requires:	blas-devel}
 
 %description devel
 ARPACK development files.
@@ -63,6 +67,7 @@ Summary:	Static ARPACK library
 Summary(pl):	Statyczna biblioteka ARPACK
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
+%{!?with_acml:Requires:	blas-static}
 
 %description static
 Static ARPACK library.
@@ -83,7 +88,9 @@ cp %{SOURCE4} .
 %{__autoheader}
 %{__autoconf}
 %{__automake}
-%configure
+%configure \
+	LDFLAGS=%{?with_acml:-lacml}%{!?with_acml:-lblas}
+
 
 %{__make}
 
