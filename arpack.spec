@@ -1,4 +1,4 @@
-Summary:	Subroutines for solving large scale eigenvalue problems.
+Summary:	Subroutines for solving large scale eigenvalue problems
 Summary(pl):	Rozwi±zywanie zagadnienia w³asnego dla du¿ych macierzy
 Name:		arpack
 Version:	2.1
@@ -39,10 +39,10 @@ eigenvectors are available on request.
 Rozwi±zywanie zagadnienia w³asnego (symetrycznego, niesymetrycznego,
 ogólnego) dla du¿ych macierzy. Macierz mo¿e byæ dowolna, przy czym
 procedury dzia³aj± szczególnie dobrze w przypadku du¿ych macierzy
-rzadkich b±d¼ macierzy ze znan± struktur±.
-Biblioteka s³u¿y do obliczenia kilku (k) warto¶ci w³asnych o zadanych z góry
-w³asno¶ciach, takich jak najwiêksza (najmniejsza) czê¶æ rzeczywista albo
-najwiêkszy (najmniejszy) modu³. Wymagania pamiêciowe s± rzedu n*k, ¿adna
+rzadkich b±d¼ macierzy ze znan± struktur±. Biblioteka s³u¿y do
+obliczenia kilku (k) warto¶ci w³asnych o zadanych z góry w³asno¶ciach,
+takich jak najwiêksza (najmniejsza) czê¶æ rzeczywista albo najwiêkszy
+(najmniejszy) modu³. Wymagania pamiêciowe s± rzedu n*k, ¿adna
 dodatkowa pamiêæ (np. dyskowa) nie jest wymagana.
 
 %package devel
