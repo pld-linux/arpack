@@ -1,17 +1,20 @@
 Summary:	Subroutines for solving large scale eigenvalue problems.
-Summary(pl):	Rozwi±zywanie zagadnienia w³asnego dla du¿ych macierzy.
+Summary(pl):	Rozwi±zywanie zagadnienia w³asnego dla du¿ych macierzy
 Name:		arpack
 Version:	2.1
 Release:	1
 License:	Freely distributable
-Group:		Development/Libraries
-URL:		http://www.caam.rice.edu/software/ARPACK/
+Group:		Libraries
 Source0:	http://www.caam.rice.edu/software/ARPACK/SRC/%{name}96.tar.gz
+# Source0-md5:	fffaa970198b285676f4156cebc8626e
 Source1:	http://www.caam.rice.edu/software/ARPACK/SRC/patch.tar.gz
+# Source1-md5:	14830d758f195f272b8594a493501fa2
 Patch0:		%{name}-automake_support.patch
-BuildRequires:	gcc-g77
+URL:		http://www.caam.rice.edu/software/ARPACK/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gcc-g77
+BuildRequires:	lapack-devel
 BuildRequires:	libtool	>= 1:1.4.2-9
 Requires:	lapack
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -34,34 +37,35 @@ procedury dzia³aj± szczególnie dobrze w przypadku du¿ych macierzy
 rzadkich b±d¼ macierzy ze znan± struktur±.
 
 %package devel
-Summary:	ARPACK header files.
+Summary:	ARPACK development files
+Summary(pl):	Pliki programistyczne ARPACK
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	lapack-devel
 
 %description devel
-ARPACK header files.
+ARPACK development files.
 
 %description devel -l pl
-Pliki nag³ówkowe ARPACK.
+Pliki programistyczne ARPACK.
 
 %package static
-Summary:	Static ARPACK libraries.
+Summary:	Static ARPACK library
+Summary(pl):	Statyczna biblioteka ARPACK
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}
 
 %description static
-Static ARPACK libraries.
+Static ARPACK library.
 
 %description static -l pl
-Biblioteki statyczne ARPACK.
+Statyczna biblioteka ARPACK.
 
 %prep
-%setup -q -a1 -n ARPACK
+%setup -q -n ARPACK
 %patch -p1
 
 %build
-rm -f ltmain.sh missing
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
@@ -73,12 +77,14 @@ rm -f ltmain.sh missing
 LTTAG=""
 grep -q -e '--tag' `which libtool` && LTTAG="--tag=F77"
 
-%{__make} LTTAG="$LTTAG"
+%{__make} \
+	LTTAG="$LTTAG"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -fr $RPM_BUILD_ROOT
