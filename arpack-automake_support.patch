@@ -1,0 +1,44 @@
+diff -urN ARPACK.orig/configure.in ARPACK.new/configure.in
+--- ARPACK.orig/configure.in	1970-01-01 01:00:00.000000000 +0100
++++ ARPACK.new/configure.in	2003-11-10 21:10:15.000000000 +0100
+@@ -0,0 +1,12 @@
++dnl Process this file with autoconf to produce a configure script.
++AC_INIT([arpack], [2.1.0])
++AM_INIT_AUTOMAKE
++AM_CONFIG_HEADER([config.h])
++
++dnl Checks for programs.
++AC_ISC_POSIX
++AC_PROG_CC
++AC_PROG_F77
++AM_PROG_LIBTOOL
++
++AC_OUTPUT([Makefile SRC/Makefile])
+diff -urN ARPACK.orig/Makefile.am ARPACK.new/Makefile.am
+--- ARPACK.orig/Makefile.am	1970-01-01 01:00:00.000000000 +0100
++++ ARPACK.new/Makefile.am	2003-11-01 12:42:42.000000000 +0100
+@@ -0,0 +1 @@
++SUBDIRS=SRC
+diff -urN ARPACK.orig/SRC/Makefile.am ARPACK.new/SRC/Makefile.am
+--- ARPACK.orig/SRC/Makefile.am	1970-01-01 01:00:00.000000000 +0100
++++ ARPACK.new/SRC/Makefile.am	2003-11-10 21:09:12.000000000 +0100
+@@ -0,0 +1,19 @@
++LIBTOOL = $(SHELL) $(top_builddir)/libtool $(LTTAG)
++lib_LTLIBRARIES = libarpack.la
++libarpack_la_LDFLAGS = -version-info $(subst .,:,@VERSION@)
++libarpack_la_SOURCES= \
++       cgetv0.f cnaitr.f cnapps.f cnaup2.f cnaupd.f cneigh.f cneupd.f\
++       cngets.f csortc.f cstatn.f debug.h dgetv0.f dlaqrb.f dnaitr.f\
++       dnapps.f dnaup2.f dnaupd.f dnaupe.f dnconv.f dneigh.f dneupd.f\
++       dngets.f dsaitr.f dsapps.f dsaup2.f dsaupd.f dsconv.f dseigt.f\
++       dsesrt.f dseupd.f dsgets.f dsortc.f dsortr.f dstatn.f dstats.f\
++       dstqrb.f sgetv0.f slaqrb.f snaitr.f snapps.f snaup2.f snaupd.f\
++       snaupe.f snconv.f sneigh.f sneupd.f sngets.f ssaitr.f ssapps.f\
++       ssaup2.f ssaupd.f ssconv.f sseigt.f ssesrt.f sseupd.f ssgets.f\
++       ssortc.f ssortr.f sstatn.f sstats.f sstqrb.f stat.h version.h\
++       zgetv0.f znaitr.f znapps.f znaup2.f znaupd.f zneigh.f zneupd.f\
++       zngets.f zsortc.f zstatn.f\
++       ../UTIL/cmout.f ../UTIL/cvout.f ../UTIL/dmout.f ../UTIL/dvout.f\
++       ../UTIL/icnteq.f ../UTIL/icopy.f ../UTIL/iset.f ../UTIL/iswap.f\
++       ../UTIL/ivout.f ../UTIL/second.f ../UTIL/smout.f ../UTIL/svout.f\
++       ../UTIL/zmout.f ../UTIL/zvout.f
