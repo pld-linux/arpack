@@ -2,7 +2,7 @@ Summary:	Subroutines for solving large scale eigenvalue problems.
 Summary(pl):	Rozwi±zywanie zagadnienia w³asnego dla du¿ych macierzy
 Name:		arpack
 Version:	2.1
-Release:	1
+Release:	2
 License:	Freely distributable
 Group:		Libraries
 Source0:	http://www.caam.rice.edu/software/ARPACK/SRC/%{name}96.tar.gz
@@ -14,7 +14,7 @@ URL:		http://www.caam.rice.edu/software/ARPACK/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gcc-g77
-BuildRequires:	lapack-devel
+#BuildRequires:	lapack-devel
 BuildRequires:	libtool	>= 1:1.4.2-9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
