@@ -22,6 +22,7 @@ BuildRequires:	automake
 BuildRequires:	gcc-g77
 BuildRequires:	blas-devel
 BuildRequires:	libtool	>= 1:1.4.2-9
+BuildRequires:	which
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
