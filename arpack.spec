@@ -62,7 +62,7 @@ Static ARPACK library.
 Statyczna biblioteka ARPACK.
 
 %prep
-%setup -q -n ARPACK
+%setup -q -n ARPACK -b1
 %patch -p1
 
 %build
