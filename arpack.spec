@@ -77,7 +77,7 @@ Statyczna biblioteka ARPACK.
 
 %prep
 %setup -q -n ARPACK -b1
-%patch -p1
+%patch0 -p1
 cp %{SOURCE2} .
 cp %{SOURCE3} .
 cp %{SOURCE4} .
