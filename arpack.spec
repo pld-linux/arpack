@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_with	acml	# With ACML version of BLAS instead of NETLIB implementation
+#
 Summary:	Subroutines for solving large scale eigenvalue problems
 Summary(pl):	Rozwi±zywanie zagadnienia w³asnego dla du¿ych macierzy
 Name:		arpack
@@ -25,7 +26,7 @@ BuildRequires:	automake
 BuildRequires:	gcc-g77
 BuildRequires:	libtool	>= 2:1.5
 %{!?with_acml:BuildRequires:	blas-devel}
-%{?with_acml:ExclusiveArch:	amd64}
+%{?with_acml:ExclusiveArch:	%{x8664}}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -67,7 +68,6 @@ Summary:	Static ARPACK library
 Summary(pl):	Statyczna biblioteka ARPACK
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
-%{!?with_acml:Requires:	blas-static}
 
 %description static
 Static ARPACK library.
@@ -90,7 +90,6 @@ cp %{SOURCE4} .
 %{__automake}
 %configure \
 	LDFLAGS=%{?with_acml:-lacml}%{!?with_acml:-lblas}
-
 
 %{__make}
 
