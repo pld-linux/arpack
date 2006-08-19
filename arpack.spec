@@ -112,8 +112,8 @@ rm -fr $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libarpack.so
 %doc DOCUMENTS/*.doc *.ps.gz
+%attr(755,root,root) %{_libdir}/libarpack.so
 %{_libdir}/libarpack.la
 
 %files static
