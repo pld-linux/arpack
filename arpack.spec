@@ -47,7 +47,7 @@ procedury dzia³aj± szczególnie dobrze w przypadku du¿ych macierzy
 rzadkich b±d¼ macierzy ze znan± struktur±. Biblioteka s³u¿y do
 obliczenia kilku (k) warto¶ci w³asnych o zadanych z góry w³asno¶ciach,
 takich jak najwiêksza (najmniejsza) czê¶æ rzeczywista albo najwiêkszy
-(najmniejszy) modu³. Wymagania pamiêciowe s± rzedu n*k, ¿adna
+(najmniejszy) modu³. Wymagania pamiêciowe s± rzêdu n*k, ¿adna
 dodatkowa pamiêæ (np. dyskowa) nie jest wymagana.
 
 %package devel
