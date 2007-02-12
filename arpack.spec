@@ -3,7 +3,7 @@
 %bcond_with	acml	# With ACML version of BLAS instead of NETLIB implementation
 #
 Summary:	Subroutines for solving large scale eigenvalue problems
-Summary(pl.UTF-8):   Rozwiązywanie zagadnienia własnego dla dużych macierzy
+Summary(pl.UTF-8):	Rozwiązywanie zagadnienia własnego dla dużych macierzy
 Name:		arpack
 Version:	2.1
 Release:	3%{?with_acml:ACML}
@@ -52,7 +52,7 @@ dodatkowa pamięć (np. dyskowa) nie jest wymagana.
 
 %package devel
 Summary:	ARPACK development files
-Summary(pl.UTF-8):   Pliki programistyczne ARPACK
+Summary(pl.UTF-8):	Pliki programistyczne ARPACK
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{!?with_acml:Requires:	blas-devel}
@@ -65,7 +65,7 @@ Pliki programistyczne ARPACK.
 
 %package static
 Summary:	Static ARPACK library
-Summary(pl.UTF-8):   Statyczna biblioteka ARPACK
+Summary(pl.UTF-8):	Statyczna biblioteka ARPACK
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
