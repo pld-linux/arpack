@@ -3,7 +3,7 @@
 %bcond_with	acml	# With ACML version of BLAS instead of NETLIB implementation
 #
 Summary:	Subroutines for solving large scale eigenvalue problems
-Summary(pl):	Rozwi±zywanie zagadnienia w³asnego dla du¿ych macierzy
+Summary(pl.UTF-8):   RozwiÄ…zywanie zagadnienia wÅ‚asnego dla duÅ¼ych macierzy
 Name:		arpack
 Version:	2.1
 Release:	3%{?with_acml:ACML}
@@ -40,19 +40,19 @@ vectors for the desired k-dimensional eigen-space is computed which is
 numerically orthogonal to working precision. Numerically accurate
 eigenvectors are available on request.
 
-%description -l pl
-Rozwi±zywanie zagadnienia w³asnego (symetrycznego, niesymetrycznego,
-ogólnego) dla du¿ych macierzy. Macierz mo¿e byæ dowolna, przy czym
-procedury dzia³aj± szczególnie dobrze w przypadku du¿ych macierzy
-rzadkich b±d¼ macierzy ze znan± struktur±. Biblioteka s³u¿y do
-obliczenia kilku (k) warto¶ci w³asnych o zadanych z góry w³asno¶ciach,
-takich jak najwiêksza (najmniejsza) czê¶æ rzeczywista albo najwiêkszy
-(najmniejszy) modu³. Wymagania pamiêciowe s± rzêdu n*k, ¿adna
-dodatkowa pamiêæ (np. dyskowa) nie jest wymagana.
+%description -l pl.UTF-8
+RozwiÄ…zywanie zagadnienia wÅ‚asnego (symetrycznego, niesymetrycznego,
+ogÃ³lnego) dla duÅ¼ych macierzy. Macierz moÅ¼e byÄ‡ dowolna, przy czym
+procedury dziaÅ‚ajÄ… szczegÃ³lnie dobrze w przypadku duÅ¼ych macierzy
+rzadkich bÄ…dÅº macierzy ze znanÄ… strukturÄ…. Biblioteka sÅ‚uÅ¼y do
+obliczenia kilku (k) wartoÅ›ci wÅ‚asnych o zadanych z gÃ³ry wÅ‚asnoÅ›ciach,
+takich jak najwiÄ™ksza (najmniejsza) czÄ™Å›Ä‡ rzeczywista albo najwiÄ™kszy
+(najmniejszy) moduÅ‚. Wymagania pamiÄ™ciowe sÄ… rzÄ™du n*k, Å¼adna
+dodatkowa pamiÄ™Ä‡ (np. dyskowa) nie jest wymagana.
 
 %package devel
 Summary:	ARPACK development files
-Summary(pl):	Pliki programistyczne ARPACK
+Summary(pl.UTF-8):   Pliki programistyczne ARPACK
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{!?with_acml:Requires:	blas-devel}
@@ -60,19 +60,19 @@ Requires:	%{name} = %{version}-%{release}
 %description devel
 ARPACK development files.
 
-%description devel -l pl
+%description devel -l pl.UTF-8
 Pliki programistyczne ARPACK.
 
 %package static
 Summary:	Static ARPACK library
-Summary(pl):	Statyczna biblioteka ARPACK
+Summary(pl.UTF-8):   Statyczna biblioteka ARPACK
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static ARPACK library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka ARPACK.
 
 %prep
