@@ -1,0 +1,11 @@
+--- ARPACK/UTIL/second.f.orig	2007-12-21 13:26:26.355426337 +0100
++++ ARPACK/UTIL/second.f	2007-12-21 13:26:40.853214608 +0100
+@@ -19,7 +19,7 @@
+ *     ..
+ *     .. External Functions ..
+       REAL               ETIME
+-      EXTERNAL           ETIME
++      INTRINSIC          ETIME
+ *     ..
+ *     .. Executable Statements ..
+ *
