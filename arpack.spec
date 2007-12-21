@@ -20,6 +20,7 @@ Source3:	http://www.caam.rice.edu/software/ARPACK/SRC/P57_58.ps.gz
 Source4:	http://www.caam.rice.edu/software/ARPACK/SRC/P61_62.ps.gz
 # Source4-md5:	d116887acb3d61fecf645c2d37d4d517
 Patch0:		%{name}-automake_support.patch
+Patch1:		%{name}-no_etime.patch
 URL:		http://www.caam.rice.edu/software/ARPACK/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -78,6 +79,7 @@ Statyczna biblioteka ARPACK.
 %prep
 %setup -q -n ARPACK -b1
 %patch0 -p1
+%patch1 -p1
 cp %{SOURCE2} .
 cp %{SOURCE3} .
 cp %{SOURCE4} .
