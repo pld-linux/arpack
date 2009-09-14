@@ -41,7 +41,7 @@ diff -urN ARPACK.orig/SRC/Makefile.am ARPACK.patch/SRC/Makefile.am
 +       zngets.f zsortc.f zstatn.f\
 +       ../UTIL/cmout.f ../UTIL/cvout.f ../UTIL/dmout.f ../UTIL/dvout.f\
 +       ../UTIL/icnteq.f ../UTIL/icopy.f ../UTIL/iset.f ../UTIL/iswap.f\
-+       ../UTIL/ivout.f ../UTIL/second.f ../UTIL/smout.f ../UTIL/svout.f\
++       ../UTIL/ivout.f ../UTIL/arscnd.f ../UTIL/smout.f ../UTIL/svout.f\
 +       ../UTIL/zmout.f ../UTIL/zvout.f \
 +	../LAPACK/cgbtf2.f  ../LAPACK/dlarf.f	../LAPACK/slarf.f \
 +	../LAPACK/cgbtrf.f  ../LAPACK/dlarfg.f	../LAPACK/slarfg.f \
