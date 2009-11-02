@@ -1,7 +1,7 @@
 diff -urN ARPACK.orig/configure.in ARPACK.patch/configure.in
 --- ARPACK.orig/configure.in	1970-01-01 01:00:00.000000000 +0100
 +++ ARPACK.patch/configure.in	2004-12-16 12:04:25.922290400 +0100
-@@ -0,0 +1,12 @@
+@@ -0,0 +1,22 @@
 +dnl Process this file with autoconf to produce a configure script.
 +AC_INIT([arpack], [2.1.0])
 +AM_INIT_AUTOMAKE
@@ -13,6 +13,16 @@ diff -urN ARPACK.orig/configure.in ARPACK.patch/configure.in
 +AC_PROG_F77
 +AM_PROG_LIBTOOL
 +
++AC_ARG_WITH(acml, 
++  [AS_HELP_STRING([--with-acml], [use ACML version of BLAS instead of NETLIB implementation])],
++  with_acml=$withval, with_acml=no)
++
++if test "$with_acml" = yes; then
++  LIBS="-lacml $LIBS"
++else
++  LIBS="-llapack $LIBS"
++fi
++
 +AC_OUTPUT([Makefile SRC/Makefile])
 diff -urN ARPACK.orig/Makefile.am ARPACK.patch/Makefile.am
 --- ARPACK.orig/Makefile.am	1970-01-01 01:00:00.000000000 +0100
@@ -22,11 +32,9 @@ diff -urN ARPACK.orig/Makefile.am ARPACK.patch/Makefile.am
 diff -urN ARPACK.orig/SRC/Makefile.am ARPACK.patch/SRC/Makefile.am
 --- ARPACK.orig/SRC/Makefile.am	1970-01-01 01:00:00.000000000 +0100
 +++ ARPACK.patch/SRC/Makefile.am	2004-12-16 12:08:47.655500904 +0100
-@@ -0,0 +1,74 @@
-+LIBTOOL = $(SHELL) $(top_builddir)/libtool --tag=F77
+@@ -0,0 +1,18 @@
 +lib_LTLIBRARIES = libarpack.la
 +libarpack_la_LDFLAGS = -version-info $(subst .,:,@VERSION@)
-+libarpack_la_LIBADD =$(LDFLAGS)
 +libarpack_la_SOURCES= \
 +       cgetv0.f cnaitr.f cnapps.f cnaup2.f cnaupd.f cneigh.f cneupd.f\
 +       cngets.f csortc.f cstatn.f debug.h dgetv0.f dlaqrb.f dnaitr.f\
@@ -42,58 +50,4 @@ diff -urN ARPACK.orig/SRC/Makefile.am ARPACK.patch/SRC/Makefile.am
 +       ../UTIL/cmout.f ../UTIL/cvout.f ../UTIL/dmout.f ../UTIL/dvout.f\
 +       ../UTIL/icnteq.f ../UTIL/icopy.f ../UTIL/iset.f ../UTIL/iswap.f\
 +       ../UTIL/ivout.f ../UTIL/arscnd.f ../UTIL/smout.f ../UTIL/svout.f\
-+       ../UTIL/zmout.f ../UTIL/zvout.f \
-+	../LAPACK/cgbtf2.f  ../LAPACK/dlarf.f	../LAPACK/slarf.f \
-+	../LAPACK/cgbtrf.f  ../LAPACK/dlarfg.f	../LAPACK/slarfg.f \
-+	../LAPACK/cgbtrs.f  ../LAPACK/dlarfx.f	../LAPACK/slarfx.f \
-+	../LAPACK/cgeqr2.f  ../LAPACK/dlarnd.f	../LAPACK/slarnd.f \
-+	../LAPACK/cgttrf.f  ../LAPACK/dlarnv.f	../LAPACK/slarnv.f \
-+	../LAPACK/cgttrs.f  ../LAPACK/dlartg.f	../LAPACK/slartg.f \
-+	../LAPACK/clacgv.f  ../LAPACK/dlaruv.f	../LAPACK/slaruv.f \
-+	../LAPACK/clacon.f  ../LAPACK/dlascl.f	../LAPACK/slascl.f \
-+	../LAPACK/clacpy.f  ../LAPACK/dlaset.f	../LAPACK/slaset.f \
-+	../LAPACK/cladiv.f  ../LAPACK/dlasr.f	../LAPACK/slasr.f \
-+	../LAPACK/clahqr.f  ../LAPACK/dlasrt.f	../LAPACK/slasrt.f \
-+	../LAPACK/clange.f  ../LAPACK/dlassq.f	../LAPACK/slassq.f \
-+	../LAPACK/clanhs.f  ../LAPACK/dlaswp.f	../LAPACK/slaswp.f \
-+	../LAPACK/clarf.f   ../LAPACK/dlasy2.f	../LAPACK/slasy2.f \
-+	../LAPACK/clarfg.f  ../LAPACK/dorm2r.f	../LAPACK/sorm2r.f \
-+	../LAPACK/clarnv.f  ../LAPACK/dpttrf.f	../LAPACK/spttrf.f \
-+	../LAPACK/clartg.f  ../LAPACK/dpttrs.f	../LAPACK/spttrs.f \
-+	../LAPACK/clascl.f  ../LAPACK/dsteqr.f	../LAPACK/ssteqr.f \
-+	../LAPACK/claset.f  ../LAPACK/dtrevc.f	../LAPACK/strevc.f \
-+	../LAPACK/classq.f  ../LAPACK/dtrexc.f	../LAPACK/strexc.f \
-+	../LAPACK/claswp.f  ../LAPACK/dtrsen.f	../LAPACK/strsen.f \
-+	../LAPACK/clatrs.f  ../LAPACK/dtrsyl.f	../LAPACK/strsyl.f \
-+	../LAPACK/cmach.f   ../LAPACK/dzsum1.f	../LAPACK/xerbla.f \
-+	../LAPACK/crot.f    ../LAPACK/icmax1.f	../LAPACK/xlaenv.f \
-+	../LAPACK/ctrevc.f  ../LAPACK/ilaenv.f	../LAPACK/zdscal.f \
-+	../LAPACK/ctrexc.f  ../LAPACK/izmax1.f	../LAPACK/zgbtf2.f \
-+	../LAPACK/ctrsen.f  ../LAPACK/lsame.f	../LAPACK/zgbtrf.f \
-+	../LAPACK/ctrsyl.f  ../LAPACK/lsamen.f	../LAPACK/zgbtrs.f \
-+	../LAPACK/cunm2r.f  ../LAPACK/scsum1.f	../LAPACK/zgeqr2.f \
-+	../LAPACK/dgbtf2.f  ../LAPACK/sgbtf2.f	../LAPACK/zgttrf.f \
-+	../LAPACK/dgbtrf.f  ../LAPACK/sgbtrf.f	../LAPACK/zgttrs.f \
-+	../LAPACK/dgbtrs.f  ../LAPACK/sgbtrs.f	../LAPACK/zlacgv.f \
-+	../LAPACK/dgeqr2.f  ../LAPACK/sgeqr2.f	../LAPACK/zlacon.f \
-+	../LAPACK/dgttrf.f  ../LAPACK/sgttrf.f	../LAPACK/zlacpy.f \
-+	../LAPACK/dgttrs.f  ../LAPACK/sgttrs.f	../LAPACK/zladiv.f \
-+	../LAPACK/dlabad.f  ../LAPACK/slabad.f	../LAPACK/zlahqr.f \
-+	../LAPACK/dlacon.f  ../LAPACK/slacon.f	../LAPACK/zlange.f \
-+	../LAPACK/dlacpy.f  ../LAPACK/slacpy.f	../LAPACK/zlanhs.f \
-+	../LAPACK/dladiv.f  ../LAPACK/sladiv.f	../LAPACK/zlarf.f \
-+	../LAPACK/dlae2.f   ../LAPACK/slae2.f	../LAPACK/zlarfg.f \
-+	../LAPACK/dlaev2.f  ../LAPACK/slaev2.f	../LAPACK/zlarnv.f \
-+	../LAPACK/dlaexc.f  ../LAPACK/slaexc.f	../LAPACK/zlartg.f \
-+	../LAPACK/dlagtm.f  ../LAPACK/slagtm.f	../LAPACK/zlascl.f \
-+	../LAPACK/dlahqr.f  ../LAPACK/slahqr.f	../LAPACK/zlaset.f \
-+	../LAPACK/dlaln2.f  ../LAPACK/slaln2.f	../LAPACK/zlassq.f \
-+	../LAPACK/dlamch.f  ../LAPACK/slamch.f	../LAPACK/zlaswp.f \
-+	../LAPACK/dlange.f  ../LAPACK/slange.f	../LAPACK/zlatrs.f \
-+	../LAPACK/dlanhs.f  ../LAPACK/slanhs.f	../LAPACK/zmach.f \
-+	../LAPACK/dlanst.f  ../LAPACK/slanst.f	../LAPACK/zrot.f \
-+	../LAPACK/dlanv2.f  ../LAPACK/slanv2.f	../LAPACK/ztrevc.f \
-+	../LAPACK/dlaptm.f  ../LAPACK/slaptm.f	../LAPACK/ztrexc.f \
-+	../LAPACK/dlapy2.f  ../LAPACK/slapy2.f	../LAPACK/ztrsen.f \
-+	../LAPACK/dlapy3.f  ../LAPACK/slapy3.f	../LAPACK/ztrsyl.f \
-+	../LAPACK/dlaran.f  ../LAPACK/slaran.f	../LAPACK/zunm2r.f
++       ../UTIL/zmout.f ../UTIL/zvout.f 
