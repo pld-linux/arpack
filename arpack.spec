@@ -112,6 +112,7 @@ rm -fr $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README
 %attr(755,root,root) %{_libdir}/libarpack.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libarpack.so.2
 
 %files devel
 %defattr(644,root,root,755)
