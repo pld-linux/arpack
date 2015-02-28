@@ -6,7 +6,7 @@ Summary:	Subroutines for solving large scale eigenvalue problems
 Summary(pl.UTF-8):	Rozwiązywanie zagadnienia własnego dla dużych macierzy
 Name:		arpack
 Version:	2.1
-Release:	8%{?with_acml:ACML}
+Release:	9%{?with_acml:ACML}
 License:	Freely distributable
 Group:		Libraries
 Source0:	http://www.caam.rice.edu/software/ARPACK/SRC/%{name}96.tar.gz
