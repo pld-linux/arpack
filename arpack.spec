@@ -2,11 +2,12 @@
 # Conditional build:
 %bcond_with	acml	# With ACML version of BLAS instead of NETLIB implementation
 #
+%define		rel	10
 Summary:	Subroutines for solving large scale eigenvalue problems
 Summary(pl.UTF-8):	Rozwiązywanie zagadnienia własnego dla dużych macierzy
 Name:		arpack
 Version:	2.1
-Release:	9%{?with_acml:ACML}
+Release:	%{rel}%{?with_acml:ACML}
 License:	Freely distributable
 Group:		Libraries
 Source0:	http://www.caam.rice.edu/software/ARPACK/SRC/%{name}96.tar.gz
