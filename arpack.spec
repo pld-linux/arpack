@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_with	acml	# With ACML version of BLAS instead of NETLIB implementation
 #
-%define		rel	12
+%define		rel	13
 Summary:	Subroutines for solving large scale eigenvalue problems
 Summary(pl.UTF-8):	Rozwiązywanie zagadnienia własnego dla dużych macierzy
 Name:		arpack
