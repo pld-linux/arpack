@@ -20,8 +20,8 @@ Source3:	http://www.caam.rice.edu/software/ARPACK/SRC/P57_58.ps.gz
 # Source3-md5:	b86d77199f989fc438acaf7ac0433e76
 Source4:	http://www.caam.rice.edu/software/ARPACK/SRC/P61_62.ps.gz
 # Source4-md5:	d116887acb3d61fecf645c2d37d4d517
-Patch0:		http://mathema.tician.de/news.tiker.net/files/arpack-arscnd-3.patch.gz
-# Patch0-md5:	a9b8224dbd9a033a73034753afb125d4
+# originally from http://mathema.tician.de/news.tiker.net/files/arpack-arscnd-3.patch.gz (dead now)
+Patch0:		%{name}-arscnd-3.patch
 Patch1:		%{name}-automake_support.patch
 Patch2:		%{name}-no_etime.patch
 URL:		http://www.caam.rice.edu/software/ARPACK/
