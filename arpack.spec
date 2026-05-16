@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_with	acml	# With ACML version of BLAS instead of NETLIB implementation
 #
-%define		rel	14
+%define		rel	15
 Summary:	Subroutines for solving large scale eigenvalue problems
 Summary(pl.UTF-8):	Rozwiązywanie zagadnienia własnego dla dużych macierzy
 Name:		arpack
@@ -27,7 +27,7 @@ Patch2:		%{name}-no_etime.patch
 URL:		http://www.caam.rice.edu/software/ARPACK/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gcc-g77
+BuildRequires:	gcc-fortran
 BuildRequires:	libtool	>= 2:1.5
 %{!?with_acml:BuildRequires:	lapack-devel}
 %{?with_acml:ExclusiveArch:	%{x8664}}
@@ -94,7 +94,8 @@ cp %{SOURCE4} .
 %{__autoheader}
 %{__autoconf}
 %{__automake}
-%configure
+%configure \
+	FFLAGS="%{rpmcflags} -std=legacy"
 
 %{__make}
 
