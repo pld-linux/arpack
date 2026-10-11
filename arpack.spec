@@ -10,6 +10,7 @@ Version:	2.1
 Release:	%{rel}%{?with_acml:ACML}
 License:	Freely distributable
 Group:		Libraries
+# 2026.10: 404 now, sources available in https://bitbucket.org/chaoyang2013/arpack but no tags/tarballs
 Source0:	http://www.caam.rice.edu/software/ARPACK/SRC/%{name}96.tar.gz
 # Source0-md5:	fffaa970198b285676f4156cebc8626e
 Source1:	http://www.caam.rice.edu/software/ARPACK/SRC/patch.tar.gz
@@ -24,7 +25,7 @@ Source4:	http://www.caam.rice.edu/software/ARPACK/SRC/P61_62.ps.gz
 Patch0:		%{name}-arscnd-3.patch
 Patch1:		%{name}-automake_support.patch
 Patch2:		%{name}-no_etime.patch
-URL:		http://www.caam.rice.edu/software/ARPACK/
+URL:		https://www.arpack.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gcc-fortran
@@ -114,13 +115,13 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README
-%attr(755,root,root) %{_libdir}/libarpack.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libarpack.so.2
+%{_libdir}/libarpack.so.*.*.*
+%ghost %{_libdir}/libarpack.so.2
 
 %files devel
 %defattr(644,root,root,755)
 %doc DOCUMENTS/*.doc *.ps.gz
-%attr(755,root,root) %{_libdir}/libarpack.so
+%{_libdir}/libarpack.so
 %{_libdir}/libarpack.la
 
 %files static
